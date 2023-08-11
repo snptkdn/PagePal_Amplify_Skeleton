@@ -1,6 +1,26 @@
-<script>
-  import {Icon } from "svelte-ionicons";
+<script lang="ts">
+	import { Icon } from 'svelte-ionicons';
+	import { Modal } from '@skeletonlabs/skeleton';
+	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
+	import SignUpModal from './components/SignUpModal.svelte';
+
+	const modalComponent: ModalComponent = {
+		ref: SignUpModal
+	};
+
+	const signUpModal: ModalSettings = {
+		type: 'component',
+		title: '新規ユーザー登録',
+		body: '新規のユーザー登録を行います。',
+    buttonTextCancel: 'キャンセル',
+		component: modalComponent
+	};
+
+	const openModal = () => {
+		modalStore.trigger(signUpModal);
+	};
 </script>
+
 <!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
 <div class="container h-full mx-auto flex justify-center items-center">
 	<div class="space-y-10 flex flex-col items-center">
@@ -17,15 +37,17 @@
 			<button class="btn variant-filled">ログイン</button>
 		</div>
 		<div class="p-6 border-2 rounded-lg border-slate-600 flex flex-wrap justify-center">
-      <Icon name="help-circle-outline" />
-      <span class="pl-2"> アカウントを持っていませんか？ </span>
+			<Icon name="help-circle-outline" />
+			<span class="pl-2"> アカウントを持っていませんか？ </span>
 			<div class="w-full" />
 			<div>
-				<button class="mt-3 btn variant-filled flex">新規登録</button>
+				<button class="mt-3 btn variant-filled flex" on:click={openModal}>新規登録</button>
 			</div>
 		</div>
 	</div>
 </div>
+
+<Modal />
 
 <style lang="postcss">
 	figure {
