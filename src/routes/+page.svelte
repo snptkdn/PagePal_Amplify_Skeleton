@@ -1,8 +1,33 @@
 <script lang="ts">
 	import { Icon } from 'svelte-ionicons';
-	import { Modal } from '@skeletonlabs/skeleton';
-	import { modalStore, type ModalComponent, type ModalSettings } from '@skeletonlabs/skeleton';
+	import { Modal, Toast, ProgressRadial } from '@skeletonlabs/skeleton';
+	import {
+		modalStore,
+		toastStore,
+		type ModalComponent,
+		type ModalSettings,
+		type ToastSettings
+	} from '@skeletonlabs/skeleton';
 	import SignUpModal from './components/SignUpModal.svelte';
+	import fetchSignIn from './signin';
+
+	let t: ToastSettings = {
+		message: 'ログインに成功しました！'
+	};
+
+	const [status, loading, signIn] = fetchSignIn();
+	let userName = '';
+	let password = '';
+
+	const onSignIn = async () => {
+		await signIn(userName, password);
+		if ($status === 400) {
+			t.message = 'ユーザー名またはパスワードが誤っています😂';
+			toastStore.trigger(t);
+		} else {
+			toastStore.trigger(t);
+		}
+	};
 
 	const modalComponent: ModalComponent = {
 		ref: SignUpModal
@@ -12,7 +37,7 @@
 		type: 'component',
 		title: '新規ユーザー登録',
 		body: '新規のユーザー登録を行います。',
-    buttonTextCancel: 'キャンセル',
+		buttonTextCancel: 'キャンセル',
 		component: modalComponent
 	};
 
@@ -27,14 +52,20 @@
 		<h2 class="h2">Welcome to PagePal.</h2>
 		<label class="label w-9/12">
 			<span>ID</span>
-			<input class="input" type="text" placeholder="ID" />
+			<input class="input" type="text" placeholder="ID" bind:value={userName} />
 		</label>
 		<label class="label w-9/12 pt-4">
 			<span>Password</span>
-			<input class="input" type="password" placeholder="PASSWORD" />
+			<input class="input" type="password" placeholder="PASSWORD" bind:value={password} />
 		</label>
 		<div class="flex justify-center space-x-2">
-			<button class="btn variant-filled">ログイン</button>
+			{#if $loading}
+				<button class="btn variant-filled">
+					<ProgressRadial width="w-5" stroke={70} />
+				</button>
+			{:else}
+				<button class="btn variant-filled" on:click={onSignIn}>ログイン</button>
+			{/if}
 		</div>
 		<div class="p-6 border-2 rounded-lg border-slate-600 flex flex-wrap justify-center">
 			<Icon name="help-circle-outline" />
@@ -48,6 +79,7 @@
 </div>
 
 <Modal />
+<Toast />
 
 <style lang="postcss">
 	figure {
