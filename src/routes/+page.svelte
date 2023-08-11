@@ -10,6 +10,7 @@
 	} from '@skeletonlabs/skeleton';
 	import SignUpModal from './components/SignUpModal.svelte';
 	import fetchSignIn from './signin';
+	import { goto } from '$app/navigation';
 
 	let t: ToastSettings = {
 		message: 'ログインに成功しました！'
@@ -26,6 +27,7 @@
 			toastStore.trigger(t);
 		} else {
 			toastStore.trigger(t);
+      goto('timeline')
 		}
 	};
 
