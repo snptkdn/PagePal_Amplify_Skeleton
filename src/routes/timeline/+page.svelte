@@ -12,7 +12,6 @@
 {#if $loading}
 	Loading: {$loading}
 {:else}
-	loaded!
 	{#each $data as history}
 		<ReadHistoryCard 
       book={history.Book}
