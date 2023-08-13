@@ -3,11 +3,14 @@
 	import '@skeletonlabs/skeleton/themes/theme-skeleton.css';
 	// import '@skeletonlabs/skeleton/themes/theme-rocket.css';
 	// import '@skeletonlabs/skeleton/themes/theme-crimson.css';
+	// import '@skeletonlabs/skeleton/themes/theme-hamlindigo.css';
 	// If you have source.organizeImports set to true in VSCode, then it will auto change this ordering
 	import '@skeletonlabs/skeleton/styles/skeleton.css';
 
 	// Most of your app wide CSS should be put in this file
-	import '../app.postcss';
+	import '../../app.postcss';
+	import { page } from '$app/stores';
+	import { Icon } from 'svelte-ionicons';
 	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
 </script>
 

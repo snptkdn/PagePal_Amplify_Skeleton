@@ -8,8 +8,8 @@
 		type ModalSettings,
 		type ToastSettings
 	} from '@skeletonlabs/skeleton';
-	import SignUpModal from './components/SignUpModal.svelte';
-	import fetchSignIn from './signin';
+	import SignUpModal from '../components/SignUpModal.svelte';
+	import fetchSignIn from '../signin';
 	import { goto } from '$app/navigation';
 
 	let t: ToastSettings = {
@@ -27,7 +27,7 @@
 			toastStore.trigger(t);
 		} else {
 			toastStore.trigger(t);
-      goto('timeline')
+      goto('pages/timeline')
 		}
 	};
 

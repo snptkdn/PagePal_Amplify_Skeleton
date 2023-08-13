@@ -1,7 +1,7 @@
 <script>
 	import { each } from 'svelte/internal';
-	import ReadHistoryCard from '../components/ReadHistoryCard.svelte';
-	import fetchReadHistories from '../read_histories';
+	import ReadHistoryCard from '../../../components/ReadHistoryCard.svelte';
+	import fetchReadHistories from '../../../read_histories';
 	import { writable } from 'svelte/store';
 
 	const [data, loading, getReadHistories] = fetchReadHistories();
