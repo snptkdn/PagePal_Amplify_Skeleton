@@ -56,16 +56,16 @@
 	<slot />
 	<svelte:fragment slot="footer">
 		<div class="logo-cloud grid-cols-4">
-			<a class="logo-item" href="/">
+			<a class="logo-item" href="/pages/timeline">
 				<Icon name="home-sharp" />
 			</a>
-			<a class="logo-item" href="/">
+			<a class="logo-item" href="/pages/search">
 				<Icon name="search-sharp" />
 			</a>
-			<a class="logo-item" href="/">
+			<a class="logo-item">
 				<Icon name="people-sharp" />
 			</a>
-			<a class="logo-item" href="/">
+			<a class="logo-item">
 				<Icon name="person-sharp" />
 			</a>
 		</div>
