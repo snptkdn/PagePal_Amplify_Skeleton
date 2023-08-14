@@ -14,6 +14,12 @@
 	let month = today.getMonth() + 1;
 	let day = today.getDate();
 
+  const isEmptyTitle = (title === '');
+  const isEmptyAuthor = (author === '');
+  const isEmptyPageCount = (pageCount === 0);
+  const isEmptyPublishedDate = (publishedDate === "");
+  
+
 	import { modalStore, Stepper, Step, RangeSlider } from '@skeletonlabs/skeleton';
 	import { toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import PostReadHistory from '../add_read_history';
@@ -75,7 +81,7 @@
 							type="text"
 							placeholder="タイトル"
 							bind:value={title}
-							readonly={title !== ''}
+							readonly={!isEmptyTitle}
 						/>
 					</label>
 					<label class="label">
@@ -85,7 +91,7 @@
 							type="text"
 							placeholder="著者"
 							bind:value={author}
-							readonly={author !== ''}
+							readonly={!isEmptyAuthor}
 						/>
 					</label>
 					<label class="label">
@@ -95,7 +101,7 @@
 							type="text"
 							placeholder="ページ数"
 							bind:value={pageCount}
-							readonly={pageCount !== 0}
+							readonly={!isEmptyPageCount}
 						/>
 					</label>
 					<label class="label">
@@ -105,7 +111,7 @@
 							type="text"
 							placeholder="出版日"
 							bind:value={publishedDate}
-							readonly={publishedDate !== ''}
+							readonly={!isEmptyPublishedDate}
 						/>
 					</label>
 				</div>
