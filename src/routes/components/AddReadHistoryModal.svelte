@@ -14,14 +14,14 @@
 	let month = today.getMonth() + 1;
 	let day = today.getDate();
 
-  const isEmptyTitle = (title === '');
-  const isEmptyAuthor = (author === '');
-  const isEmptyPageCount = (pageCount === 0);
-  const isEmptyPublishedDate = (publishedDate === "");
-  
+	const isEmptyTitle = title === '';
+	const isEmptyAuthor = author === '';
+	const isEmptyPageCount = pageCount === 0;
+	const isEmptyPublishedDate = publishedDate === '';
 
 	import { modalStore, Stepper, Step, RangeSlider } from '@skeletonlabs/skeleton';
 	import { toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
+	import { getCookie, setCookie, deleteCookie } from 'svelte-cookie';
 	import PostReadHistory from '../add_read_history';
 
 	let t: ToastSettings = {
@@ -31,7 +31,8 @@
 	const [status, loading, postReadHistory] = PostReadHistory();
 
 	function getISBN(): string {
-		const isbn_confirm = isbn.find((i) => i.type === 'ISBN_13') || isbn.find((i) => i.type === 'ISBN_10') || isbn[0];
+		const isbn_confirm =
+			isbn.find((i) => i.type === 'ISBN_13') || isbn.find((i) => i.type === 'ISBN_10') || isbn[0];
 		return isbn_confirm.identifier;
 	}
 
@@ -42,9 +43,9 @@
 				title: title,
 				author: author ? author[0] : '',
 				page_count: pageCount,
-        image_url: image_url,
+				image_url: image_url
 			},
-			1,
+			Number(getCookie('id')),
 			new Date(year, month, day),
 			rating
 		);
