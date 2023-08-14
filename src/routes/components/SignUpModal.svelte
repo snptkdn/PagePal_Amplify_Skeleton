@@ -30,7 +30,7 @@
 	};
 
 	const validatePassword = () => {
-		if (formData.password.length < 5) {
+		if (formData.password.length < 8) {
 			isInvalidPass = true;
 			return false;
 		} else {
@@ -93,7 +93,7 @@
 						placeholder="Enter password..."
 					/>
 					{#if isInvalidPass}
-						<span class="text-error-500"> パスワードは4文字以上で設定してください。 </span>
+						<span class="text-error-500"> パスワードは8文字以上で設定してください。 </span>
 					{/if}
 				</label>
 			</form>
