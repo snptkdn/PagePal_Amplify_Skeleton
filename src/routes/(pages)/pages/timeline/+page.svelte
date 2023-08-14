@@ -4,7 +4,7 @@
 	import fetchReadHistories from '../../../read_histories';
 	import { writable } from 'svelte/store';
 
-	const [data, loading, getReadHistories] = fetchReadHistories();
+	const [histories, loading, getReadHistories] = fetchReadHistories();
 
 	getReadHistories();
 </script>
@@ -12,7 +12,7 @@
 {#if $loading}
 	Loading: {$loading}
 {:else}
-	{#each $data.reverse() as history}
+	{#each $histories.reverse() as history}
 		<ReadHistoryCard 
       book={history.Book}
       user={history.User}

@@ -10,13 +10,14 @@
 	} from '@skeletonlabs/skeleton';
 	import SignUpModal from '../components/SignUpModal.svelte';
 	import fetchSignIn from '../signin';
+	import { getCookie, setCookie, deleteCookie } from 'svelte-cookie';
 	import { goto } from '$app/navigation';
 
 	let t: ToastSettings = {
 		message: 'ログインに成功しました！'
 	};
 
-	const [status, loading, signIn] = fetchSignIn();
+	const [id, status, loading, signIn] = fetchSignIn();
 	let userName = '';
 	let password = '';
 
@@ -26,8 +27,10 @@
 			t.message = 'ユーザー名またはパスワードが誤っています😂';
 			toastStore.trigger(t);
 		} else {
+			setCookie('id', $id, 30, true);
+
 			toastStore.trigger(t);
-      goto('pages/timeline')
+			goto('pages/timeline');
 		}
 	};
 

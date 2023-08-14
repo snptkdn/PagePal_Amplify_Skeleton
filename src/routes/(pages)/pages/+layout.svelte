@@ -12,6 +12,16 @@
 	import { page } from '$app/stores';
 	import { Icon } from 'svelte-ionicons';
 	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
+	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
+
+	export let data;
+
+	onMount(() => {
+		if (data.id === undefined) {
+			goto('/');
+		}
+	});
 </script>
 
 <!-- App Shell -->
