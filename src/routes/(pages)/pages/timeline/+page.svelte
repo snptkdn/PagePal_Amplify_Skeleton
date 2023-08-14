@@ -12,7 +12,7 @@
 {#if $loading}
 	Loading: {$loading}
 {:else}
-	{#each $data as history}
+	{#each $data.reverse() as history}
 		<ReadHistoryCard 
       book={history.Book}
       user={history.User}
