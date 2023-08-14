@@ -1,17 +1,22 @@
 <script lang="ts">
-	import { each } from 'svelte/internal';
-	import { writable } from 'svelte/store';
 	import { Icon } from 'svelte-ionicons';
-	import { ProgressRadial } from '@skeletonlabs/skeleton';
+	import { Toast, Modal, ProgressRadial } from '@skeletonlabs/skeleton';
+  	import {
+		modalStore,
+		toastStore,
+		type ModalComponent,
+		type ModalSettings,
+		type ToastSettings
+	} from '@skeletonlabs/skeleton';
 	import BookSearchCard from '../../../components/BookSearchCard.svelte';
 	import fetchSearchBooks from '../../../serch_books';
+  import AddReadHistoryModal from '../../../components/AddReadHistoryModal.svelte';
 
 	const [data, loading, searchBooks] = fetchSearchBooks();
 
 	let input: string;
 
 	async function onSearch() {
-		console.log('invoked.');
 		await searchBooks(input);
 	}
 </script>
@@ -37,7 +42,8 @@
 				image_url: book.volumeInfo?.imageLinks?.smallThumbnail,
 				author: book.volumeInfo?.authors,
 				page_count: book.volumeInfo?.pageCount,
-				date: book.volumeInfo?.publishedDate
+				date: book.volumeInfo?.publishedDate,
+        industryIdentifiers: book.volumeInfo?.industryIdentifiers
 			}}
 		/>
 	{/each}
@@ -62,3 +68,6 @@
 		</div>
 	</div>
 {/if}
+
+<Modal />
+<Toast />

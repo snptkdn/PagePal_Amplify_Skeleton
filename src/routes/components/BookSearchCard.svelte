@@ -1,6 +1,13 @@
 <script lang="ts">
-	import { NoirLight, ProgressRadial } from '@skeletonlabs/skeleton';
+	import {
+		NoirLight,
+		Modal,
+		type ModalComponent,
+		type ModalSettings,
+		modalStore
+	} from '@skeletonlabs/skeleton';
 	import { Icon } from 'svelte-ionicons';
+	import AddReadHistoryModal from './AddReadHistoryModal.svelte';
 
 	export let bookInfo: {
 		title: string;
@@ -8,6 +15,31 @@
 		author: string;
 		page_count: number;
 		date: Date;
+    industryIdentifiers: [];
+	};
+
+	const modalComponent: ModalComponent = {
+		ref: AddReadHistoryModal,
+		props: {
+			title: bookInfo.title,
+			author: bookInfo.author,
+      pageCount: bookInfo.page_count,
+      publishedDate: bookInfo.date,
+      image_url: bookInfo.image_url,
+      isbn: bookInfo.industryIdentifiers
+		}
+	};
+
+	const addReadHistoryModal: ModalSettings = {
+		type: 'component',
+		title: '書籍の登録',
+		body: '書籍の登録を行います',
+		buttonTextCancel: 'キャンセル',
+		component: modalComponent
+	};
+
+	const openModal = () => {
+		modalStore.trigger(addReadHistoryModal);
 	};
 </script>
 
@@ -38,10 +70,16 @@
 				<span class="pl-2">{bookInfo.date ?? '-'}</span>
 			</div>
 			<div class="w-full" />
-			<button type="button" class="btn variant-filled-surface rounded-none p-2 w-full mt-3">
+			<button
+				type="button"
+				class="btn variant-filled-surface rounded-none p-2 w-full mt-3"
+				on:click={openModal}
+			>
 				<Icon name="book-outline" />
 				<span>読んだ</span>
 			</button>
 		</div>
 	</div>
 </div>
+
+<Modal />
