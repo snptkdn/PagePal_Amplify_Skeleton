@@ -21,7 +21,7 @@
 
 <div class="card p-4 m-4">
 	<div>
-		<p class="text-left float-left text-surface-300">{user.Name}</p>
+		<p class="text-left float-left text-surface-300">@{user.Name}</p>
 		<p class="text-right text-surface-300">{date.toLocaleString()}</p>
 	</div>
 	<div class="py-4 grid grid-cols-2">
