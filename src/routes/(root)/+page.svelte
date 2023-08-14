@@ -12,11 +12,19 @@
 	import fetchSignIn from '../signin';
 	import { getCookie, setCookie, deleteCookie } from 'svelte-cookie';
 	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		const userID = getCookie('id');
+		if (userID) {
+			goto('/pages/timeline')
+		}
+	});
 
 	let t: ToastSettings = {
 		message: 'ログインに成功しました！'
 	};
-
+  
 	const [id, status, loading, signIn] = fetchSignIn();
 	let userName = '';
 	let password = '';
