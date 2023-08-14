@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Icon } from 'svelte-ionicons';
 	import { Toast, Modal, ProgressRadial } from '@skeletonlabs/skeleton';
-  	import {
+	import {
 		modalStore,
 		toastStore,
 		type ModalComponent,
@@ -10,11 +10,20 @@
 	} from '@skeletonlabs/skeleton';
 	import BookSearchCard from '../../../components/BookSearchCard.svelte';
 	import fetchSearchBooks from '../../../serch_books';
-  import AddReadHistoryModal from '../../../components/AddReadHistoryModal.svelte';
+	import AddReadHistoryModal from '../../../components/AddReadHistoryModal.svelte';
 
 	const [data, loading, searchBooks] = fetchSearchBooks();
 
 	let input: string;
+
+	const handleKeyDown = (e) => {
+		// form1に入力されたキーを取得
+		const key = e.keyCode || e.charCode || 0;
+		// 13はEnterキーのキーコード
+		if (key == 13) {
+      onSearch();
+		}
+	};
 
 	async function onSearch() {
 		await searchBooks(input);
@@ -26,7 +35,12 @@
 		<button class="variant-filled" on:click={onSearch}>
 			<Icon name="search-sharp" />
 		</button>
-		<input type="search" bind:value={input} placeholder="書籍タイトルや著者を入力..." />
+		<input
+			type="search"
+			bind:value={input}
+			on:keydown={handleKeyDown}
+			placeholder="書籍タイトルや著者を入力..."
+		/>
 	</div>
 </div>
 
@@ -43,7 +57,7 @@
 				author: book.volumeInfo?.authors,
 				page_count: book.volumeInfo?.pageCount,
 				date: book.volumeInfo?.publishedDate,
-        industryIdentifiers: book.volumeInfo?.industryIdentifiers
+				industryIdentifiers: book.volumeInfo?.industryIdentifiers
 			}}
 		/>
 	{/each}
