@@ -14,12 +14,13 @@
 	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import { getCookie, setCookie, deleteCookie } from 'svelte-cookie';
 
-	export let data;
 
 	onMount(() => {
-		if (data.id === undefined) {
-			goto('/');
+		const userID = getCookie('id');
+		if (!userID) {
+			goto('/')
 		}
 	});
 </script>
