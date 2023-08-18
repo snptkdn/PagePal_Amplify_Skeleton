@@ -17,7 +17,7 @@
 		<ul>
 			{#each $users as user}
 				<li>
-					<a href="/elements/lists">
+					<a href="user/{user.UserID}">
 						<Avatar initials={user.UserName} class="bg-secondary-500 w-8"/>
 						<span class="flex-auto">{user.UserName}</span>
 						<span class="badge variant-soft-secondary">{user.TotalBooks} Books</span>
