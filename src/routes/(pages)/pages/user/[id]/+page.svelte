@@ -1,10 +1,26 @@
 <script lang="ts">
-	export let data;
+	import BookLibrary from '../../../../components/BookLibrary.svelte';
+	import UserHeader from '../../../../components/UserHeader.svelte';
+  import BookLibraryList from '../../../../components/BookLibraryList.svelte';
+
+  export let data;
+
 </script>
 
-{data.id}
-<div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-4 py-10">
-	{#each Array.from({ length: 8 }) as _, i}
-		<div class="snap-center shrink-0 card py-20 w-40 md:w-80 text-center">{i + 1}</div>
-	{/each}
+<UserHeader {data} />
+
+<div class="card mx-4 mb-4 p-4">
+	<div class="text-center">
+		<span>読みたい本</span>
+	</div>
+	<hr class="!border-t-2" />
+	<BookLibrary {data} />
+</div>
+
+<div class="card mx-4 mb-4 p-4">
+	<div class="text-center">
+		<span>読んだ本</span>
+	</div>
+	<hr class="!border-t-2" />
+  <!-- <BookLibraryList {data} /> -->
 </div>
