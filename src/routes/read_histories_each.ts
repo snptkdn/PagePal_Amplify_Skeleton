@@ -1,9 +1,26 @@
-import { get, writable } from "svelte/store";
+import { get, writable, type Writable } from "svelte/store";
 import { BackendHost } from "../store";
 
-export default function() {
+export interface ReadHistory {
+  Book: {
+    isbn: string,
+    title: string,
+    author: string, 
+    image_url: string, 
+    description: string,
+    page_count: number
+  },
+  User: {
+    Name: string
+  }
+  IsRead: boolean,
+  Rate: number,
+  Date: string
+}
+
+export default function(): [Writable<[]>, Writable<boolean>, Function] {
   const loading = writable(false);
-  const data = writable({});
+  const data: Writable<[]> = writable([]);
 
   async function getReadHistories(userID: string) {
     loading.set(true);
