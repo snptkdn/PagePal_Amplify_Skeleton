@@ -1,6 +1,7 @@
 <script>
 	import fetchReadHistories from '../read_histories_each';
 	import { ProgressRadial } from '@skeletonlabs/skeleton';
+	import NoImage from '$lib/noimage.png';
 
 	export let data;
 
@@ -19,7 +20,11 @@
 	>
 		{#each $histories as history}
 			<div class="snap-center shrink-0 py-2 w-20 md:w-40 text-center">
-				<img class="rounded-lg block m-auto" src={history.Book.image_url} />
+				{#if history.Book.image_url}
+					<img class="rounded-lg block m-auto" src={history.Book.image_url} />
+				{:else}
+					<img class="rounded-lg block m-auto" src={NoImage} />
+				{/if}
 			</div>
 		{/each}
 	</div>

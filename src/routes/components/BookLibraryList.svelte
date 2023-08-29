@@ -4,6 +4,7 @@
 	import { Paginator, type PaginationSettings } from '@skeletonlabs/skeleton';
 	import { onMount } from 'svelte';
 	import ReadHistoryCard from './ReadHistoryCard.svelte';
+	import NoImage from '$lib/noimage.png';
 
 	export let data;
 	const [histories, loading, getReadHistories] = fetchReadHistories();
@@ -69,7 +70,11 @@
 		{#each paginatedSource as history}
 			<div class="flex flex-row">
 				<div class="w-2/12 m-1 flex">
-					<img class="object-contain h-16 w-12" src={history.Book.image_url} />
+				{#if history.Book.image_url}
+					<img class="object-contain h-16 w-12 rounded-md" src={history.Book.image_url} />
+				{:else}
+					<img class="object-contain h-16 w-12 rounded-md" src={NoImage} />
+				{/if}
 				</div>
 				<div class="w-10/12 flex flex-wrap">
 					<div class="w-full flex items-center">

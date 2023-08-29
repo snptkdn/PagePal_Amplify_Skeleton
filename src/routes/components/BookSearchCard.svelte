@@ -8,6 +8,7 @@
 	} from '@skeletonlabs/skeleton';
 	import { Icon } from 'svelte-ionicons';
 	import AddReadHistoryModal from './AddReadHistoryModal.svelte';
+	import NoImage from '$lib/noimage.png';
 
 	export let bookInfo: {
 		title: string;
@@ -15,7 +16,7 @@
 		author: string;
 		page_count: number;
 		date: Date;
-    industryIdentifiers: [];
+		industryIdentifiers: [];
 	};
 
 	const modalComponent: ModalComponent = {
@@ -23,10 +24,10 @@
 		props: {
 			title: bookInfo.title,
 			author: bookInfo.author,
-      pageCount: bookInfo.page_count,
-      publishedDate: bookInfo.date,
-      image_url: bookInfo.image_url,
-      isbn: bookInfo.industryIdentifiers
+			pageCount: bookInfo.page_count,
+			publishedDate: bookInfo.date,
+			image_url: bookInfo.image_url,
+			isbn: bookInfo.industryIdentifiers
 		}
 	};
 
@@ -50,7 +51,11 @@
 	<hr class="!border-t-2" />
 	<div class="py-4 grid grid-cols-2">
 		<div>
-			<img class="rounded-lg block m-auto" src={bookInfo.image_url} />
+			{#if bookInfo.image_url}
+				<img class="rounded-lg block m-auto w-32" src={bookInfo.image_url} />
+			{:else}
+				<img class="rounded-lg block m-auto w-32" src={NoImage} />
+			{/if}
 		</div>
 		<div class="flex items-center justify-center flex-wrap">
 			<div class="w-full" />
