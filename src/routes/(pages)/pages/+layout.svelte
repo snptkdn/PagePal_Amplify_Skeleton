@@ -50,7 +50,7 @@
 			<a class="logo-item" href="/pages/users">
 				<Icon name="people-sharp" />
 			</a>
-			<a class="logo-item">
+			<a class="logo-item" href="/pages/mypage">
 				<Icon name="person-sharp" />
 			</a>
 		</div>
