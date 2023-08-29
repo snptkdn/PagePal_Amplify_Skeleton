@@ -19,13 +19,15 @@
 		class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-4 py-2 md:py-10"
 	>
 		{#each $histories as history}
-			<div class="snap-center shrink-0 py-2 w-20 md:w-40 text-center">
-				{#if history.Book.image_url}
-					<img class="rounded-lg block m-auto" src={history.Book.image_url} />
-				{:else}
-					<img class="rounded-lg block m-auto" src={NoImage} />
-				{/if}
-			</div>
+			{#if !history.IsRead}
+				<div class="snap-center shrink-0 py-2 w-20 md:w-40 text-center">
+					{#if history.Book.image_url}
+						<img class="rounded-lg block m-auto" src={history.Book.image_url} />
+					{:else}
+						<img class="rounded-lg block m-auto" src={NoImage} />
+					{/if}
+				</div>
+			{/if}
 		{/each}
 	</div>
 {/if}

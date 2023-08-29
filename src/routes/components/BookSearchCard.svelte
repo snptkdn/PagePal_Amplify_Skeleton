@@ -81,7 +81,7 @@
 				on:click={openModal}
 			>
 				<Icon name="book-outline" />
-				<span>読んだ</span>
+				<span class="text-sm">読んだ / 読みたい</span>
 			</button>
 		</div>
 	</div>

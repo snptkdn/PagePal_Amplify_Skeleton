@@ -12,8 +12,10 @@
 
 	onMount(async () => {
 		await getReadHistories(data.id);
+    $histories = $histories.
+      filter((history) => history.IsRead)
+      .sort((a, b) => new Date(a.Date) < new Date(b.Date));
 		page.size = $histories.length;
-		$histories = $histories.sort((a, b) => new Date(a.Date) < new Date(b.Date));
 	});
 
 	$: paginatedSource = $histories.slice(

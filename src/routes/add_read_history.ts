@@ -32,6 +32,7 @@ export default function() {
     userID: number,
     date: Date,
     rate: number,
+    is_read: boolean
   ) {
     await fetchBook(bookInfo.isbn, bookInfo);
     const formData = {
@@ -39,6 +40,7 @@ export default function() {
       user_id: userID,
       date: date,
       rate: rate,
+      is_read: is_read
     };
     loading.set(true);
     try {
