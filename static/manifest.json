@@ -3,10 +3,11 @@
   "short_name": "PagePal",
   "background_color": "#000000",
   "icons": [{
-      "src": "/favicon.png",
-      "sizes": "48x48",
-      "type": "image/png"
-    }],
+    "src": "icon.ico",
+    "sizes": "48x48 72x72 96x96 128x128 192x192 256x256 512x512",
+    "type": "image/vnd.microsoft.icon",
+    "purpose": "any maskable"
+  }],
   "start_url": "/",
   "display": "standalone"
 }
