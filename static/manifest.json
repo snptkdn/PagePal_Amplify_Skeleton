@@ -1,9 +1,9 @@
 {
   "name": "PagePal - Your book shelf.",
   "short_name": "PagePal",
-  "theme_color": "#fff",
+  "theme_color": "#a9a9a9",
   "background_color": "#fff",
-  "display": "standalone",
+  "display": "fullScreen",
   "orientation": "portrait",
   "scope": "/",
   "start_url": "/",
