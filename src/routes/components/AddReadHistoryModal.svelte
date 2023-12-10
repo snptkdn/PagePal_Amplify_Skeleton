@@ -44,7 +44,7 @@
 				isbn: getISBN(),
 				title: title,
 				author: author ? author[0] : '',
-				page_count: pageCount,
+				page_count: Number(pageCount),
 				image_url: image_url
 			},
 			Number(getCookie('id')),
